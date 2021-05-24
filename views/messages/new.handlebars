@@ -1,0 +1,24 @@
+{{>_header}}
+              <div class="container my-4">
+             <div class="leave-coment-form">
+                        <h3 class="courses-title  mb-4">Scholarship Status Message</h3>
+                        <form action="/scholarship/message" method="POST">
+                        <div class="form-group">
+                            <label for="sender">Title</label>
+                            <input type="text" name="title" class="form-control" required="required" placeholder="Congratulation! ">
+                        </div>
+                        
+                           <div class="form-group">
+                                <textarea name="mesBody" class="form-control" placeholder="Your comment here..."
+                                    required="required"></textarea>
+                            </div>
+                            <div class="mm_single_submit">
+                                <input type="submit" value="Send Scholarship Message">
+                            </div>
+                        </form>
+                    </div>
+                  
+                 </div>
+              
+
+  {{>_footer}}               
