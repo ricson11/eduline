@@ -214,6 +214,21 @@ router.get('/user/notification/:slug', async(req, res)=>{
     }
 });
 
+//delete notification
+router.get('/delete/note/:slug', async(req, res)=>{
+  try{
+  let note = await Notification.findOne({slug: req.params.slug});
+     note.remove();
+     req.flash('success_msg', 'User notification removed')
+     res.redirect('/admin/dashboard');
+  }
+  catch(err){
+    console.log(err.message)
+    res.redirect('/500');
+  }
+  
+});
+
 router.get('/profile/:slug', checkUser, async(req, res)=>{
     let user = await User.findOne({slug: req.params.slug});
     //let the user viewing another user profile show on the header

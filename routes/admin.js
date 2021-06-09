@@ -4,13 +4,20 @@ const router = express.Router();
 require('../models/User');
 require('../models/Post');
 require('../models/Comment');
+require('../models/Scholar');
 const {checkUser, checkAdmin, checkSuper} = require('../helpers/auth');
+const Post = require('../models/Post');
 
 const layout = 'admin';
 
 
 router.get('/dashboard', checkAdmin, async(req, res)=>{
-    res.render('admins/index', {layout})
+    let users = await User.countDocuments({});
+    let posts = await Post.countDocuments({});
+    let scholars = await Scholar.countDocuments({});
+    let selected = await Scholar.countDocuments({isScholar:true});
+    let states = await Scholar.find({}).sort({date:-1}).limit(3);
+    res.render('admins/index', {layout, states, users, selected, posts, scholars})
 });
 router.get('/users', checkAdmin, async(req, res)=>{
     //pagination

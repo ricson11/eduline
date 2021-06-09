@@ -292,5 +292,9 @@ router.post('/email', async(req, res)=>{
        res.render('scholars/selected', {isScholars,page,count,limit,nextIndex,startIndex,pages});
  });
 
+ router.get('/more', async(req, res)=>{
+     let more = await Scholar.find({}).sort({date:-1})
+      res.render('scholars/more', {more})
+ });
 
 module.exports = router;

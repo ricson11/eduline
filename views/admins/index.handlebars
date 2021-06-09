@@ -3,10 +3,77 @@
 {{>_msg}}
 
 <div class="container my-4">
-    <h5 class="text-center">Welcome, admin <span class="text-danger">{{user.username}}</span></h5>
+    <h5 class="text-center">Welcome, admin  <span class="text-danger">{{user.username}}</span></h5>
+     <p class="text-center">Logged in as superAdmin</p>
+     <p class="text-center text-success">Date: {{adminDate}}</p>
 </div>
 
 
+<div class="container my-3">
+   <form action="/admin/search_post" method="GET">
+   <div class="input-group">
+     <input type="search" name="query" class="form-control p-2" placeholder="Search... post" id="searching">
+     <div class="input-group-append">
+       <button class="btn btn-danger" type="submit">Search</button>
+     </div>
+   </div>
+  </form>
 
+</div>
+
+<div class="container my-5">
+    <div class="row text-center">
+        <div class="col-sm-6">
+            <h5 class="">Number of Users</h5>
+             <i class="fa fa-arrow-down"></i>
+
+            <p class="text-danger ">{{users}}</p>
+        </div>
+         
+          <div class="col-sm-6">
+            <h5 class="">Number of Posts  </h5>
+             <i class="fa fa-arrow-down"></i>
+           
+             <p class="text-danger">{{posts}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row text-center">
+        <div class="col-sm-6">
+            <h5 class="">Number of Scholarship Applicants</h5>
+              <i class="fa fa-arrow-down"></i>
+         
+            <p class="text-danger">{{scholars}}</p>
+        </div>
+        
+          <div class="col-sm-6">
+            <h5 class="">Selected Applicants</h5>
+                   <i class="fa fa-arrow-down"></i>
+                <p class="text-danger">{{selected}}</p>
+        </div>
+    </div>
+</div>
   
+  <div class="container my-5">
+    <div class="row text-center">
+        <div class="col-sm-6">
+            <h5 class="">State of Applicants</h5>
+             {{#each states}}
+            <p class="text-danger"> {{state}}</p>
+            {{/each}}
+            <span class="badge badge-primary"><a href="/scholarship/more" class="text-white">view more</a></span>
+
+        </div>
+         
+          <div class="col-sm-6">
+            <h5 class="">Choice of Institutions  </h5>
+            {{#each states}}
+            <p class="text-danger">{{choice}}</p>
+            {{/each}}
+            <span class="badge badge-primary"><a href="/scholarship/more" class="text-white">view more</a></span>
+        </div>
+    </div>
+</div>
  {{>_adm_foot}}

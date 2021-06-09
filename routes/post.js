@@ -3,18 +3,17 @@ const router = express.Router();
 const fs = require('fs');
 const moment = require('moment');
 const cloudinary = require('cloudinary');
+
 const upload = require('../middlewares/multer');
 const uploadMethod = require('../middlewares/multipleUpload');
 const {checkUser, checkAdmin} = require('../helpers/auth');
-const Post = require('../models/Post');
-require('../models/Posting');
 require('../models/User');
 require('../models/Comment');
 require('../models/Post');
 
 //Main page
 router.get('/',  async(req, res)=>{
-    let post1 = await Post.find({status: 'published', category: 'scholarship'}).sort({updatedAt:-1, date:-1}).limit(1);
+    let post1 = await Post.find({status: 'published'}).sort({updatedAt:-1, date:-1}).limit(1);
     let post2 = await Post.find({status: 'published'}).sort({updatedAt:-1, date:-1}).skip(1).limit(1);
     let post3 = await Post.find({status: 'published'}).sort({updatedAt:-1, date:-1}).skip(2).limit(1);
 
@@ -221,15 +220,9 @@ router.post('/post', upload.array('image'), async(req, res)=>{
                newPost.allowComment=false;
             };
              let post = await Post.create(newPost)
-             const newPosting={
-                 title: req.body.title,
-                 postingId: post.id
-             }
-             let posting = await Posting.create(newPosting);
             console.log(newPost)
-            console.log(posting)
             req.flash('success_msg', 'Post successfully added')
-             res.redirect('/posts');
+             res.redirect('/admin/posts');
      }
     }
      catch(err){
@@ -242,48 +235,20 @@ router.post('/post', upload.array('image'), async(req, res)=>{
 
 }); 
 
-      
+
+
     
 
-//post notification route//
-
-router.get('/posting/:slug', async(req, res)=>{
-    try{
-    let posting = await Posting.findOne({slug: req.params.slug})
-    posting.isRead=true;
-    posting.save();
-    res.redirect('/post/'+posting.slug);
-    }
-    catch(err){
-        console.log(err.message)
-        res.redirect('/500');
-    }
-})
-
-//delete multiple notification at once route//
-
-router.get('/deleteAll', async(req, res)=>{
-    try{
-   // let posting = await Posting.find({});
-    Posting.deleteMany({});
-    req.flash('success_msg', 'All post notifications deleted')
-    res.redirect('back');
-    }
-    catch(err){
-        console.log(err.message)
-        res.redirect('/500');
-    }
-})
 
 
     router.get('/post/:slug', checkUser, async(req, res)=>{
         try{
         let post = await Post.findOne({slug: req.params.slug}).populate('commenting').populate('user');
-        let recents = await Post.find({status: 'published'}).sort({updatedAt:-1, date:-1}).skip(1).limit(4)
-        let latest = await Post.find({status: 'published'}).sort({updatedAt:-1, date:-1}).limit(4)
+        let recents = await Post.find({status: 'published', slug:{$nin:post.slug}}).sort({updatedAt:-1, date:-1}).limit(4)
+        let latest = await Post.find({status: 'published'}).sort({updatedAt:-1, date:-1}).limit(3)
         let top = await Post.find({status: 'published'}).sort({views:-1}).limit(4)
         let q = new RegExp(post.category, 'i');
-        let featured = await Post.find({status: 'published', $or:[{category:q}]}).sort({updatedAt:-1, date:-1}).limit(4)
+        let featured = await Post.find({ slug:{$nin:post.slug}, status: 'published', $or:[{category:q}]}).sort({updatedAt:-1, date:-1}).limit(4)
        
         post.views++;
         post.save();
@@ -391,7 +356,7 @@ router.put('/update_post/post/:slug', upload.array('image'), async(req, res)=>{
       
           console.log(post)
          req.flash('success_msg', 'Post successfully updated')
-          res.redirect('/posts');
+          res.redirect('/admin/posts');
        }
   
     }
@@ -433,7 +398,7 @@ router.put('/update/post/:slug', upload.array('image'), async(req, res)=>{
          }else{
          let post = await Post.findOne({slug: req.params.slug})
            if(!post){
-               res.redirect('/posts')
+               res.redirect('/admin/posts')
            }
        
     
@@ -506,18 +471,7 @@ router.get('/delete/post/:slug', checkAdmin, async(req, res)=>{
         res.status(500).redirect('/500');
     }
 });
-//post notification route//
-router.get('/posting/:slug', async(req, res)=>{
-    try{
-        let posting = await Posting.findOne({slug: req.params.slug})
-        posting.isRead = true;
-     res.redirect('/post/'+posting.slug);
-    }
-    catch(err){
-        console.log(err.message)
-        res.redirect('/500');
-    }
-});
+
 
 
 

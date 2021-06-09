@@ -11,6 +11,9 @@ module.exports={
     formatNew:function(date){
       return day(date).format('DD MMMM YYYY, h:mm a');
   },
+  adminDate:function(){
+    return day().format(' DD/MM/YYYY, h:mm a');
+},
    
     select: function (selected, options) {
         return options

@@ -1,6 +1,7 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const env = require('dotenv');
+const Contact = require('../models/Contact');
 const router = express.Router();
 env.config({path: '../.env'});
 
@@ -18,18 +19,6 @@ router.get('/contacts', async(req, res)=>{
     res.render('contacts/index', {contacts});
 });
 
-router.get('/contact/:slug', async(req, res)=>{
-    try{
-    contact = await Contact.findOne({slug: req.params.slug});
-    contact.isRead=true;
-    contact.save();
-    res.render('contacts/show', {contact});
-    }
-    catch(err){
-        console.log(err.message)
-        res.redirect('/500');
-    }
-});
 
 router.post('/contact', async(req, res)=>{
     try{
@@ -80,6 +69,37 @@ router.post('/contact', async(req, res)=>{
         res.redirect('/500');
     }
 });
+
+
+
+router.get('/contact/:slug', async(req, res)=>{
+    try{
+    contact = await Contact.findOne({slug: req.params.slug});
+    contact.isRead=true;
+    contact.save();
+    res.render('contacts/show', {contact});
+    }
+    catch(err){
+        console.log(err.message)
+        res.redirect('/500');
+    }
+});
+
+
+router.get('/delete/contact/:slug', async(req, res)=>{
+  try{
+      let contact = await Contact.deleteOne({slug: req.params.slug})
+      
+      console.log(contact)
+       req.flash('success_msg', 'Message deleted')
+       res.redirect('back');
+  }
+  catch(err){
+      console.log(err.message)
+      res.redirect('/500');
+  }
+});
+
 
 
 

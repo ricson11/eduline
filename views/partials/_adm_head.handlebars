@@ -10,7 +10,6 @@
     
    
   <span class="fas">
-         <i class="fa fa-bell" id="bellNote"> {{postings.length}}</i>
 
        <i class="fa fa-users" id="userNote">{{notifications.length}}</i>
             
@@ -72,7 +71,7 @@
                 <a class="nav-link" href="/">Analytics</a>
             </li>
               <li class="nav-item ">
-                <a class="nav-link" href="/">Gmail</a>
+                <a class="nav-link" href="https://mail.google.com/mail/u/0/#inbox" target="_blank">Gmail</a>
             </li>
             
         </ul>
@@ -89,25 +88,11 @@
            
            <p class="">{{username}} <span class="text-danger">{{gender}}</span></p>
            <a href="/user/notification/{{slug}}">more details</a>
-           
+           <a href="/delete/note/{{slug}}">delete</a>
          </div>   
          {{/each}}
  </div>
- <div class="container-flex" id="notebox1">
-
-     {{#if postings}}
-           <p class="text-center mt-2" id="newsi">New post <i class="fa fa-times" id="tim1"></i></p>
-           <a href="/deleteAll">delete</a>
-           {{/if}}
-        {{#each postings}}
- <div class="container text-center my-3" id="noti">
-           
-           <p class="">{{title}} <span class="text-danger">{{gender}}</span></p>
-           <a href="/posting/{{slug}}">more details</a>
-           
-         </div>   
-         {{/each}}
-     </div>
+ 
       <div class="container-flex" id="notebox2">
 
      {{#if contacts}}
@@ -116,7 +101,7 @@
         {{#each contacts}}
  <div class="container text-center my-3" id="noti">
            
-           <p class="">from {{name}} <span class="text-danger">{{gender}}</span></p>
+           <p class="">from {{name}} <span class="text-danger"><a href="/delete/contact/{{slug}}"><i class="fa fa-trash"></i></a></span></p>
            <a href="/contact/{{slug}}">more details</a>
            
          </div>   

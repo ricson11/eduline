@@ -19,7 +19,7 @@
     <!-- //inner banner -->
     <!-- single -->
      <div class="container mt-4 mb-2 text-center">
-        <a href="/scholarship/application" id="applying"><h5>Apply For Eduline 2021 Jambites Scholarship Program  </h5></a>
+        <a href="/scholarship/application" id="applying"><h5>Apply For Jambites 2021 Scholarship Program  </h5></a>
     </div>
     <div class="single-w3l py-5">
         <div class="container py-xl-5 py-lg-3">
@@ -227,13 +227,13 @@
                     <aside class="side-bar my-4">
                         <ul class="nav nav-tabs" role="tablist" id="myTab">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#home1" role="tab">Latest</a>
+                                <a class="nav-link active" data-toggle="tab" href="#home1" role="tab">Featured</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Top</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Featured</a>
+                                <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Latest</a>
                             </li>
                         </ul>
 
@@ -241,7 +241,7 @@
                         <div class="tab-content sidebar-tabing mt-3" id="nav-tabContent">
                             
                             <div class="tab-pane active" id="home1" role="tabpanel">
-                                {{#each latest}}
+                                {{#each featured}}
                                 <div class="media">
                                     <a href="/post/{{slug}}">
                                         <img class="d-flex mr-3 img-fluid my-2" src="{{image.[0]}}" alt="Generic placeholder image" id=""/>
@@ -292,7 +292,7 @@
                                
                             </div>
                             <div class="tab-pane" id="messages" role="tabpanel">
-                                {{#each featured}}
+                                {{#each latest}}
                                 <div class="media">
                                     <a href="/post/{{slug}}">
                                         <img class="d-flex mr-3 img-fluid my-2" src="{{image.[0]}}" alt="Generic placeholder image">

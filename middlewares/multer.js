@@ -1,10 +1,15 @@
 const multer = require('multer');
-const cloudinary = require('cloudinary');
+const cloudinary = require('cloudinary').v2;
 const env = require('dotenv');
 
-env.config({path: './.env'});
+env.config({path: '../.env'});
 
 
+cloudinary.config({
+    cloud_name: process.env.cloudName,
+    api_key: process.env.apiKey,
+    api_secret: process.env.apiSecret
+});
 
 
 var storage = multer.diskStorage({
@@ -25,12 +30,6 @@ function fileFilter(req, file, cb){
      }
 }
 
-
-cloudinary.config({
-    cloud_name: process.env.cloudName,
-    api_key: process.env.apiKey,
-    api_secret: process.env.apiSecret
-});
 
 
 

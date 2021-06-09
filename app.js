@@ -11,7 +11,7 @@ const MongoStore = require('connect-mongo');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 const path = require('path');
 const env = require('dotenv');
-const {stripTags, formatTime, formatDate, formatNew, select, truncate} = require('./helpers/hps');
+const {stripTags, adminDate, formatTime, formatDate, formatNew, select, truncate} = require('./helpers/hps');
 require('./config/passport')(passport);
 
 env.config({path: './.env'});
@@ -50,6 +50,7 @@ app.engine('handlebars', exphbs({
          formatDate: formatDate,
          formatNew: formatNew,
          truncate: truncate,
+         adminDate: adminDate,
     },
     handlebars: allowInsecurePrototypeAccess(Handlebars),
     defaultLayout: 'main'
@@ -88,11 +89,8 @@ app.use(async function(req, res, next){
        res.locals.notifications = notify;
        let contact = await Contact.find({isRead:'false'}).sort({date:-1})
        res.locals.contacts = contact;
-       let posting = await Posting.find({isRead:'false'}).sort({date:-1})
-       res.locals.postings = posting;
-       let message = await Message.find({}).sort({date:-1})
-       res.locals.messages = message;
-
+      
+       
     }catch(err){
         console.log(err.message)
     }
@@ -101,7 +99,6 @@ app.use(async function(req, res, next){
 
 
 //routes
-app.use('/scholarship', require('./routes/message'));
 
 app.use('/', require('./routes/post'));
 app.use('/', require('./routes/user'));
