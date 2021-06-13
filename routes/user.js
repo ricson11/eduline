@@ -7,7 +7,7 @@ const env = require('dotenv');
 const async = require('async');
 const router = express.Router();
 const {checkUser, checkAdmin, checkSuper} = require('../helpers/auth');
-
+let paySecret = 'sk_test_57874d9f993d98d4de9658f68b610b79bdad3a31';
 env.config({path: '../.env'});
 
 require('../models/User');
@@ -501,6 +501,17 @@ async.waterfall([
 });
 
 
+app.post("/paystack/pay/verification", function(req, res) {
+    //validate event
+    var hash = crypto.createHmac('sha512', paySecret).update(JSON.stringify(req.body)).digest('hex');
+    if (hash == req.headers['x-paystack-signature']) {
+    // Retrieve the request's body
+    var event = req.body;
+    // Do something with event  
+    event.save();
+    }
+    res.send(200);
+});
 
 
 
