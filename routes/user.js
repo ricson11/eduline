@@ -501,7 +501,7 @@ async.waterfall([
 });
 
 
-app.post("/paystack/pay/verification", function(req, res) {
+router.post("/paystack/pay/verification", function(req, res) {
     //validate event
     var hash = crypto.createHmac('sha512', paySecret).update(JSON.stringify(req.body)).digest('hex');
     if (hash == req.headers['x-paystack-signature']) {
