@@ -26,6 +26,7 @@ router.get('/index', checkAdmin, async(req, res)=>{
    res.render('scholars/index', {scholars, count, page, nextIndex, startIndex, limit, pages})
 })
 
+//scholarship application page
 router.get('/new', checkUser, (req, res)=>{
     res.render('scholars/new', {title: 'Scholarship Application Page - Eduline'});
 });

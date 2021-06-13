@@ -4,17 +4,20 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <ul class="d-flex header-agile">
+                        <ul class="d-flex justify-content-center header-agile">
                             {{#if user}}
                             <li>
-                                <a href="/" class="text-white" >Welcome back to our portal</a>
+                                <a href="/" class="text-white" >Welcome</a>
                             </li>
                             <li>
                                 <span class="fas fa-user-circle" ><p class="d-inline text-white"> {{user.username}}</p></span>
                             </li>
+                             <li>
+                                <a href="/logout" class="text-white text-capitalize">Logout <span class="fas fa-sign-out-alt flash animated infinite" id="log320"></span></a>
+                            </li>
                             {{ else }}
                               <li>
-                                <a href="/" class="text-white " >Welcome to our portal</a>
+                                <a href="/" class="text-white " >Welcome</a>
                             </li>
                             <li>
                                 <span class="fas fa-user-circle"><p class="d-inline text-white"> Guest</p></span>
@@ -23,11 +26,14 @@
                               <li>
                        <a href="/user/register" class="text-white text-capitalize">Register <span class="fas fa-sign-up-alt flash animated infinite"></span></a>
                             </li>
+                             <li>
+                       <a href="/login" class="text-white text-capitalize">login <span class="fas fa-sign-in-alt flash animated infinite"></span></a>
+                            </li>
                             {{/if}}
                             {{#if user.isAdmin}}
                             <li>
                               
-                                <p class="d-inline text-white"><a href="/admin/dashboard" class="ml-2 d-none d-md-inline">Admin Dashboard</a></p>
+                                <p class="d-inline text-white"><a href="/admin/dashboard" class="ml-2 d-none d-lg-inline">Admin Dashboard</a></p>
                             </li>
                             {{/if}}
                         </ul>
@@ -36,18 +42,11 @@
                         <div class="d-flex">
                             <!-- Multiple select filter -->
                           
-                              <form action="/search" method="GET" class="my-2">
+                              <form action="/search" method="GET" class="my-2 mx-auto">
                            <input type="search" name="query" class="form-contol" placeholder="Search... type & hit enter key..." id="frontSearch">
                            </form>
                             <!-- Multiple select filter  -->
-                            <div class="login-wthree my-auto">
-                                {{#if user}}
-                                <a href="/logout" class="text-white text-capitalize"> <span class="fas fa-sign-out-alt flash animated infinite" id="log320"></span>Logout</a>
-                               {{ else }}
-                       <a href="/login" class="text-white text-capitalize">login <span class="fas fa-sign-in-alt flash animated infinite"></span></a>
-
-                              {{/if}}
-                            </div>
+                          
                         </div>
                     </div>
                 </div>
