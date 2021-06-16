@@ -24,7 +24,7 @@ router.get('/login', (req, res)=>{
 });
 
 
-router.get('/user/register', (req, res)=>{
+router.get('/register', (req, res)=>{
   res.render('users/registration2', {title: 'Sign Up - Eduline'})
 });
 
