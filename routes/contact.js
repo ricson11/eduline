@@ -43,7 +43,7 @@ router.post('/contact', async(req, res)=>{
            }else{
                console.log('Message sent successfully' + info.response)
                req.flash('success_msg', 'Message delivered successfully')
-               return res.redirect('back')
+               return res.redirect('/message/successful')
            }
        })
     }
@@ -53,6 +53,10 @@ router.post('/contact', async(req, res)=>{
     }
 });
 
+
+router.get('/message/successful', (req, res)=>{
+    res.render('successes/successful')
+});
 
 
 
