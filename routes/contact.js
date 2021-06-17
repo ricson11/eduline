@@ -12,14 +12,6 @@ require('../models/User');
 
 
 
-
-
-router.get('/contacts', async(req, res)=>{
-    let contacts = await Contact.find({}).sort({date:-1})
-    res.render('contacts/index', {contacts});
-});
-
-
 router.post('/contact', async(req, res)=>{
     try{
     const newContact={
@@ -98,6 +90,14 @@ router.get('/delete/contact/:slug', async(req, res)=>{
       console.log(err.message)
       res.redirect('/500');
   }
+});
+
+
+
+
+router.get('/contacts', async(req, res)=>{
+    let contacts = await Contact.find({}).sort({date:-1})
+    res.render('contacts/index', {contacts});
 });
 
 
