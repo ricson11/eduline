@@ -39,7 +39,7 @@
                         
                         <ul class="courses_list my-2">
                             {{#if post.date}}
-                          <li class="mr-2">Updated {{formatTime post.updatedAt " MMMM DD, YYYY"}}</li>
+                          <li class="mr-2"> {{formatTime post.updatedAt " MMMM DD, YYYY"}}</li>
                               {{ else }}
                             <li class="mr-2"> {{formatTime post.date " MMMM DD, YYYY"}}</li>
                              {{/if}}
