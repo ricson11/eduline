@@ -13,7 +13,6 @@
 
        <i class="fa fa-users" id="userNote">{{notifications.length}}</i>
             
-       <i class="fa fa-envelope-open" id="emailNote">{{contacts.length}}</i>
 
      </span> 
      
@@ -93,20 +92,7 @@
          {{/each}}
  </div>
  
-      <div class="container-flex" id="notebox2">
-
-     {{#if contacts}}
-           <p class="text-center mt-2" id="newsi">New email <i class="fa fa-times" id="tim2"></i></p>
-           {{/if}}
-        {{#each contacts}}
- <div class="container text-center my-3" id="noti">
-           
-           <p class="">from {{name}} <span class="text-danger"><a href="/delete/contact/{{slug}}"><i class="fa fa-trash"></i></a></span></p>
-           <a href="/contact/{{slug}}">more details</a>
-           
-         </div>   
-         {{/each}}
-     </div>
+    
 
 
   <script src="/js/bootstrap.js"></script>

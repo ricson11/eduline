@@ -6,7 +6,6 @@ require('../models/Post');
 require('../models/Comment');
 require('../models/Scholar');
 const {checkUser, checkAdmin, checkSuper} = require('../helpers/auth');
-const Post = require('../models/Post');
 
 const layout = 'admin';
 

@@ -11,7 +11,6 @@ const {checkUser, checkAdmin, checkSuper} = require('../helpers/auth');
 env.config({path: '../.env'});
 
 require('../models/User');
-require('../models/Contact');
 require('../models/Notification');
 
 
