@@ -11,14 +11,6 @@ require('../models/User');
 require('../models/Comment');
 require('../models/Post');
 
-//Main page
-router.get('/',  async(req, res)=>{
-    let post1 = await Post.find({status: 'published'}).sort({updatedAt:-1, date:-1}).limit(1);
-    let post2 = await Post.find({status: 'published'}).sort({updatedAt:-1, date:-1}).skip(1).limit(1);
-    let post3 = await Post.find({status: 'published'}).sort({updatedAt:-1, date:-1}).skip(2).limit(1);
-
-    res.render('index', { title: 'Education And Scholarship Portal - Eduline', post1, post2, post3});
-});
 
 //Saved posts
 router.get('/saved/posts', checkAdmin, async(req, res)=>{
@@ -473,6 +465,14 @@ router.get('/delete/post/:slug', checkAdmin, async(req, res)=>{
 });
 
 
+//Main page
+router.get('/',  async(req, res)=>{
+    let post1 = await Post.find({status: 'published'}).sort({updatedAt:-1, date:-1}).limit(1);
+    let post2 = await Post.find({status: 'published'}).sort({updatedAt:-1, date:-1}).skip(1).limit(1);
+    let post3 = await Post.find({status: 'published'}).sort({updatedAt:-1, date:-1}).skip(2).limit(1);
+
+    res.render('index', { title: 'Education And Scholarship Portal - Eduline', post1, post2, post3});
+});
 
 
 module.exports = router;
