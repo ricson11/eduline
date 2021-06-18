@@ -257,7 +257,7 @@ router.post('/email', async(req, res)=>{
             return res.redirect('/500');
         }else{
             console.log(info.message)
-            req.flash('success_msg', 'Scholarship message delivered to'+ ''+ req.body.email+''+ 'successfully')
+            req.flash('success_msg', 'Scholarship message delivered to' + " " + req.body.email +" " + 'successfully')
             return res.redirect('/scholarship/selected');
         }
      });
