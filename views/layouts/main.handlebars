@@ -115,8 +115,13 @@
 
 
   <script>
+// Enable local "abbr" plugin from /myplugins/abbr/ folder.
+//CKEDITOR.plugins.addExternal( 'justify', '/plugins/justify/', 'plugin.js' );
 
-      CKEDITOR.replace('detail');
+      CKEDITOR.replace('detail', {
+     extraPlugins: 'justify'
+
+      });
      
   </script>
   
