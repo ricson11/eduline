@@ -22,7 +22,8 @@ router.get('/',  async(req, res)=>{
 
 //Saved posts
 router.get('/saved/posts', checkAdmin, async(req, res)=>{
- //pagination
+ 
+    //pagination
     const page = parseInt(req.query.page)||1
     const limit = parseInt(req.query.limit)||9
     const count =await Post.countDocuments({status:'saved'})
