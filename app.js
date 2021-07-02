@@ -27,19 +27,19 @@ mongoose.promise = global.promise;
 
 //development
 
-mongoose.connect(process.env.localConnection, {
-     useNewUrlParser:true, useUnifiedTopology:true,useCreateIndex: true, useFindAndModify: true,
-})
-.then(()=>console.log('mongodb is connected'))
-.catch(err=>console.log(err)); 
-
-
-//production
-/*mongoose.connect(process.env.mongoConnection, {
+/*mongoose.connect(process.env.localConnection, {
      useNewUrlParser:true, useUnifiedTopology:true,useCreateIndex: true, useFindAndModify: true,
 })
 .then(()=>console.log('mongodb is connected'))
 .catch(err=>console.log(err)); */
+
+
+//production
+mongoose.connect(process.env.mongoConnection, {
+     useNewUrlParser:true, useUnifiedTopology:true,useCreateIndex: true, useFindAndModify: true,
+})
+.then(()=>console.log('mongodb is connected'))
+.catch(err=>console.log(err)); 
 
 
 app.engine('handlebars', exphbs({
@@ -62,23 +62,23 @@ app.use(express.json());
 
 app.use(methodOverride('_method'));
 
-/*
+
 app.use(session({
     secret: 'secret',
     resave:false,
     saveUninitialized:false,
     store: MongoStore.create({mongoUrl: process.env.mongoConnection})
      
-})); */
+})); 
 
 
-app.use(session({
+/*app.use(session({
     secret: 'secret',
     resave:false,
     saveUninitialized:false,
     store: MongoStore.create({mongoUrl: process.env.localConnection})
      
-}));
+})); */
 
 
 
