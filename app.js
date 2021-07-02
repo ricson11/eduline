@@ -26,20 +26,20 @@ mongoose.promise = global.promise;
 
 
 //development
-/*
+
 mongoose.connect(process.env.localConnection, {
      useNewUrlParser:true, useUnifiedTopology:true,useCreateIndex: true, useFindAndModify: true,
 })
 .then(()=>console.log('mongodb is connected'))
-.catch(err=>console.log(err)); */
+.catch(err=>console.log(err)); 
 
 
 //production
-mongoose.connect(process.env.mongoConnection, {
+/*mongoose.connect(process.env.mongoConnection, {
      useNewUrlParser:true, useUnifiedTopology:true,useCreateIndex: true, useFindAndModify: true,
 })
 .then(()=>console.log('mongodb is connected'))
-.catch(err=>console.log(err)); 
+.catch(err=>console.log(err)); */
 
 
 app.engine('handlebars', exphbs({
@@ -62,12 +62,21 @@ app.use(express.json());
 
 app.use(methodOverride('_method'));
 
-
+/*
 app.use(session({
     secret: 'secret',
     resave:false,
     saveUninitialized:false,
     store: MongoStore.create({mongoUrl: process.env.mongoConnection})
+     
+})); */
+
+
+app.use(session({
+    secret: 'secret',
+    resave:false,
+    saveUninitialized:false,
+    store: MongoStore.create({mongoUrl: process.env.localConnection})
      
 }));
 
@@ -126,3 +135,4 @@ app.use(function(req, res){
 
 app.set('port', process.env.PORT || 80);
 app.listen(app.get('port'),()=>console.log('server is running on port' + " "+ app.get('port')));
+

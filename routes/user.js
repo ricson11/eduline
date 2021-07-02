@@ -27,9 +27,16 @@ router.get('/register', (req, res)=>{
   res.render('users/registration2', {title: 'Sign Up - Eduline'})
 });
 
-router.get('/user/register?', (req, res)=>{
+router.get('/user/register?', async(req, res)=>{ 
+   try{
+ 
     res.render('users/register', {title: 'Membership Registration - Eduline'});
-});
+}
+catch(err){
+  console.log(err.message)
+}
+ });
+
 
 
 
@@ -498,9 +505,6 @@ async.waterfall([
   res.redirect('/');
 });
 });
-
-
-
 
 
 

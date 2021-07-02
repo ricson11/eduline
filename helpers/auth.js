@@ -1,4 +1,4 @@
-
+const https = require('https');
 module.exports={
     checkUser: function(req, res, next){
          
@@ -42,7 +42,6 @@ module.exports={
        console.log(err.message)
        res.redirect('/500');
    }
-}
+},
  
-  
 };
