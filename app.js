@@ -11,7 +11,7 @@ const MongoStore = require('connect-mongo');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 const path = require('path');
 const env = require('dotenv');
-const {stripTags, adminDate, formatTime, formatDate, formatNew, select, truncate} = require('./helpers/hps');
+const {stripTags, adminDate, formatTime, formatDate, formatNew, select, truncate, section} = require('./helpers/hps');
 require('./config/passport')(passport);
 
 env.config({path: './.env'});
@@ -51,6 +51,7 @@ app.engine('handlebars', exphbs({
          formatNew: formatNew,
          truncate: truncate,
          adminDate: adminDate,
+         section: section,
     },
     handlebars: allowInsecurePrototypeAccess(Handlebars),
     defaultLayout: 'main'

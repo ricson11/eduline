@@ -1,5 +1,8 @@
       {{>_header}}
      {{>_msg}}
+     {{#section "head"}}
+      <title>{{post.title}}</title>
+      {{/section}}
   <!-- //header -->
     <!-- inner banner -->
     <div class="inner-banner-w3ls text-right d-flex align-items-center">
@@ -36,7 +39,7 @@
                         <h6 class="courses-first text-dark mt-4 mb-2">
                             <i class="far fa-user mr-2"></i>Eduline posted in <a href="/{{post.category}}" class="">{{post.category}}</a>
                         </h6>
-                        
+           
                         <ul class="courses_list my-2">
                             {{#if post.date}}
                           <li class="mr-2"> {{formatTime post.updatedAt " MMMM DD, YYYY"}}</li>
@@ -73,12 +76,9 @@
                      {{/if}}
                    </div>
                    <p class="text-center text-danger mb-1">Share this post</p>
-                  <!-- ShareThis BEGIN <div class="sharethis-inline-share-buttons"></div><ShareThis END -->
           
                 <!-- Go to www.addthis.com/dashboard to customize your tools -->
-               <!-- <div class="addthis_inline_share_toolbox"></div>-->
-<div class="fb-share-button" data-href="https://www.eduline.com.ng/&#123;&#123;post.title&#125;&#125;" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.eduline.com.ng%2F%257B%257Bpost.title%257D%257D&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>                      <!--comment section-->
-                            
+                <div class="addthis_inline_share_toolbox"></div>
                     <div class="comments my-0">
                        <div class="container mt-4 text-center">
                            {{#if post.allowComment}}
