@@ -27,7 +27,7 @@ router.get('/register', (req, res)=>{
   res.render('users/registration2', {title: 'Sign Up - Eduline'})
 });
 
-router.get('/user/register?', async(req, res)=>{ 
+router.get('/registration/user454560-verified', async(req, res)=>{ 
    try{
  
     res.render('users/register', {title: 'Membership Registration - Eduline'});
