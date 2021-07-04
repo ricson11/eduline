@@ -40,7 +40,7 @@ router.get('/details', (req, res)=>{
 });
 
 router.get('/info', (req, res)=>{
-    res.render('scholars/share', {title: 'Jambites 2021 Scholarship Program  - Eduline'})
+    res.render('scholars/share', {title: 'Jambites 2021 Scholarship Program For Jamb Score Of 200 And Above'})
 });
 
 router.get('/application/page', async(req, res)=>{
