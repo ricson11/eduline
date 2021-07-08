@@ -17,7 +17,7 @@ router.get('/',  async(req, res)=>{
     let post2 = await Post.find({status: 'published'}).sort({updatedAt:-1, date:-1}).skip(1).limit(1);
     let post3 = await Post.find({status: 'published'}).sort({updatedAt:-1, date:-1}).skip(2).limit(1);
    
-    res.render('index', { title: 'Connecting And Updating Students - Eduline', post1, post2, post3});
+    res.render('index', { title: 'Education And Scholarship Portal - Eduline', post1, post2, post3});
 });
 
 //Saved posts
